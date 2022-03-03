@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 16px;
+    /* background-color: rgb(231, 159, 151); */
+    background: url('https://media.istockphoto.com/vectors/girl-reading-sitting-on-stacks-of-books-in-fall-leaves-background-vector-id1173670326?b=1&k=20&m=1173670326&s=170667a&w=0&h=sDXGSJi6VrRLAOxpSDVigzpGlsd-uur7qzt-nBDKKV0=');
+    background-size: cover;
+    padding: 3px;
+}
+h1 {
+    color: #000;
+}
+button {
+    background: #069cc2; 
+    border-radius: 6px; 
+    padding: 15px; 
+    cursor: pointer; 
+    color: #fff; 
+    border: none; 
+    font-size: 16px;
+}
