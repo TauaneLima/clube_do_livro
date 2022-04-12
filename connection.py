@@ -1,10 +1,20 @@
-import mysql.connector
+import flaskext.mysql import MySQL
 from flask import Flask, render_template, request
 
+mysql= MySQL()
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-    # Criar Conexão com Banco SQLITE
+
+
+    # Criar Conexão com Banco SQLILITE
+ app.config ['MYSQL_DATABASE_USER'] = 'root'
+ app.config ['MYSQL_DATABASE_PASSWORD'] =' 'user1234'
+ app.config ['MYSQL_DATABASE_DB] = 'atividade'
+ app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.7'
+ 
+ mysql.init_app(app)
+             
 conexao = mysql.connector.connect(database='db_usuario', user='root', password='user1234')
 criar_tabela_sql = """CREATE TABLE IF NOT EXISTS tb_usuarios(
                         id int(11) NOT NULL AUTO_INCREMENT,
