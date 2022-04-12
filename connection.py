@@ -50,7 +50,7 @@ def leitores():
 
 
 @app.route("/fazerlogin", methods=['POST', 'GET'])
-def signUp():
+def fazerlogin():
     try:
         _name = request.form['inputName']
         _email = request.form['inputEmail']
