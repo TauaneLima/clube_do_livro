@@ -9,8 +9,15 @@
 </head>
 <body>
     <h2>Aqui você encontra Todas as leitoras do nosso clube do livro</h2>
-    <ul>
-        <li>Tauane Lima dos Santos</li>
-    </ul>
+    
+   <table>
+    <tr><td> Nomes </td></tr>
+    {% for item in datas %}
+    <tr>
+        <td>{{item[0]}}</td>
+        <td>{{item[1]}}</td>
+    </tr>
+    {% endfor %}
+   </table>
 </body>
 </html>
