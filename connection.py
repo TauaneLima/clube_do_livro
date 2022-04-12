@@ -9,7 +9,7 @@ app.url_map.strict_slashes = False
 
     # Criar Conexão com Banco SQLILITE
  app.config ['MYSQL_DATABASE_USER'] = 'root'
- app.config ['MYSQL_DATABASE_PASSWORD'] =' 'user1234'
+ app.config ['MYSQL_DATABASE_PASSWORD'] ='user1234'
  app.config ['MYSQL_DATABASE_DB] = 'atividade'
  app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.7'
  
@@ -50,16 +50,37 @@ def leitores():
 
 
 @app.route("/fazerlogin", methods=['POST', 'GET'])
-def incluir_usuario():
-    cursor = conexao.cursor()
-    nome = request.form['nome']
-    email = request.form['email']
-    senha = request.form['senha']
-    cursor.execute("""INSERT INTO tb_usuarios(nome, email, senha) VALUES(%s, %s, %s)""", (nome, email, senha))
-    conexao.commit()
-    cursor.close()
-    conexao.close()
-    return render_template('login.html')
+def signUp():
+    try:
+        _name = request.form['inputName']
+        _email = request.form['inputEmail']
+        _password = request.form['inputPassword']
+
+        print(_name)
+        print(_email)
+        print(_password)
+
+        # validate the received values
+        if _name and _email and _password:
+            
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            _hashed_password = _password
+            cursor.execute('insert into tbl_user (user_name, user_username, user_password) VALUES (%s, %s, %s)', ( _name,_email,_hashed_password))
+            conn.commit()
+        return render_template('login.html')
+  
+@app.route('/list',methods=['POST','GET'])
+def list():
+    try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute ('select user_name, user_username from tbl_user')
+            data = cursor.fetchall()
+            print(data[0]);
+
+            conn.commit()
+            return render_template('leitores.html', datas=data)
     
 
 if __name__ == '__main__':
