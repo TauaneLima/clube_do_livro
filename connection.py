@@ -15,14 +15,7 @@ app.url_map.strict_slashes = False
  
  mysql.init_app(app)
              
-conexao = mysql.connector.connect(database='db_usuario', user='root', password='user1234')
-criar_tabela_sql = """CREATE TABLE IF NOT EXISTS tb_usuarios(
-                        id int(11) NOT NULL AUTO_INCREMENT,
-                        nome VARCHAR(255) NOT NULL,
-                        email VARCHAR(255) NOT NULL,
-                        senha VARCHAR(255) NOT NULL,
-                        PRIMARY KEY (id))"""
-
+conexao = mysql.connector.connect(database='db_usuario', user='root', password='user1234'
 
 cursor = conexao.cursor()
 cursor.execute(criar_tabela_sql)
@@ -44,10 +37,6 @@ def leitores():
 @app.route('/books')
 def leitores():
     return render_template('books.html')
-
-
-
-
 
 @app.route("/fazerlogin", methods=['POST', 'GET'])
 def fazerlogin():
