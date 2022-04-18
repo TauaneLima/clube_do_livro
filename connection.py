@@ -3,15 +3,12 @@ from flask import Flask, render_template, request
 
 mysql= MySQL()
 app = Flask(__name__)
-app.url_map.strict_slashes = False
-
-
 
     # Criar Conexão com Banco SQLILITE
  app.config ['MYSQL_DATABASE_USER'] = 'root'
  app.config ['MYSQL_DATABASE_PASSWORD'] ='user1234'
- app.config ['MYSQL_DATABASE_DB] = 'atividade'
- app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.7'
+ app.config ['MYSQL_DATABASE_DB'] = 'atividade'
+ app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.2'
  
  mysql.init_app(app)
              
