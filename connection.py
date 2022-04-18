@@ -5,14 +5,14 @@ mysql= MySQL()
 app = Flask(__name__)
 
     # Criar Conexão com Banco SQLILITE
- app.config ['MYSQL_DATABASE_USER'] = 'root'
+ app.config ['MYSQL_DATABASE_USER'] = 'admin'
  app.config ['MYSQL_DATABASE_PASSWORD'] ='mudar123'
  app.config ['MYSQL_DATABASE_DB'] = 'teste'
  app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.2'
  
  mysql.init_app(app)
              
-conexao = mysql.connector.connect(database='db_usuario', user='root', password='mudar123'
+conexao = mysql.connector()
 
 cursor = conexao.cursor()
 
