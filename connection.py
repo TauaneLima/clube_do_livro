@@ -1,20 +1,17 @@
-import flaskext.mysql import MySQL
-from flask import Flask, render_template, request
+import os
+from flask import Flask, render_template, json, request
+from flaskext.mysql import MySQL
 
-mysql= MySQL()
+mysql = MySQL()
 app = Flask(__name__)
 
     # Criar Conexão com Banco SQLILITE
- app.config ['MYSQL_DATABASE_USER'] = 'admin'
- app.config ['MYSQL_DATABASE_PASSWORD'] ='mudar123'
- app.config ['MYSQL_DATABASE_DB'] = 'teste'
- app.config ['MYSQL_DATABASE_HOST'] = '172.17.0.2'
- 
- mysql.init_app(app)
-             
-conexao = mysql.connector()
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'mudar123'
+app.config['MYSQL_DATABASE_DB'] = 'teste'
+app.config['MYSQL_DATABASE_HOST'] = '172.17.0.7'
 
-cursor = conexao.cursor()
+mysql.init_app(app)
 
 @app.route('/')
 def main():
@@ -49,8 +46,10 @@ def fazerlogin():
             conn = mysql.connect()
             cursor = conn.cursor()
             _hashed_password = _password
-            cursor.execute('insert into tbl_user (user_name, user_username, user_password) VALUES (%s, %s, %s)', ( _name,_email,_hashed_password))
+            cursor.callproc('sp_createUser',(_name,_email,_hashed_password))
+            data = cursor.fetchall()
             conn.commit()
+            print(data);
         return render_template('login.html')
   
 @app.route('/list',methods=['POST','GET'])
@@ -66,5 +65,6 @@ def list():
             return render_template('leitores.html', datas=data)
     
 
-if __name__ == '__main__':
-   app.run(host='0.0.0.0', port=5050)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
