@@ -27,14 +27,6 @@ def main():
 def login():
     return render_template('login.html')
 
-@app.route('/leitores.html')
-def leitores():
-    return render_template('leitores.html')
-
-@app.route('/books')
-def leitores():
-    return render_template('books.html')
-
 @app.route("/adicionar_usuario", methods=['POST', 'GET'])
 def incluir_usuario():
     cursor = conexao.cursor()
